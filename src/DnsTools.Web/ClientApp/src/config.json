@@ -277,11 +277,11 @@
       "region": "Zurich",
       "country": "CH",
       "locationDisplay": "Switzerland",
-      "latitude": 47.4328339,
-      "longitude": 8.55738620,
-      "providerName": "WebHorizon",
-      "providerUrl": "https://webhorizon.in/",
-      "dataCenterName": "M247",
+      "latitude": 47.43316997,
+      "longitude": 8.5574738,
+      "providerName": "HostHatch",
+      "providerUrl": "https://hosthatch.com/",
+      "dataCenterName": "Interxion ZUR1",
       "networkAsn": 63473
     },
     {
