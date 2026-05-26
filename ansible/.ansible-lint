@@ -1,0 +1,3 @@
+skip_list:
+  # Existing role directory is referenced by this name; renaming it is out of scope.
+  - role-name

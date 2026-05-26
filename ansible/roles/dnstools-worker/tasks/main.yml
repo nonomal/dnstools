@@ -1,6 +1,6 @@
 ---
 - name: Install packages
-  apt:
+  ansible.builtin.apt:
     name:
       - certbot
       - htop
@@ -14,25 +14,25 @@
       - unattended-upgrades
     state: present
     install_recommends: false
-    update_cache: yes
+    update_cache: true
 
 - name: Disable search domain in /etc/resolv.conf
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/resolv.conf
     line: search .
 
 # In theory, `net.ipv4.ping_group_range` should work instead, but I couldn't get that
 # working across all servers, so we'll just rely on setuid for now.
 - name: Ensure ping is setuid
-  file:
+  ansible.builtin.file:
     path: /bin/ping
-    mode: 04755
+    mode: "04755"
 
 #################################################
 # Certbot
 
 - name: Create acme-dns-auth.py for acme-dns
-  template:
+  ansible.builtin.template:
     src: acme-dns-auth.py.j2
     dest: /etc/letsencrypt/acme-dns-auth.py
     owner: root
@@ -40,56 +40,57 @@
     mode: "0700"
 
 - name: Create certbot renewal hooks directory
-  file:
+  ansible.builtin.file:
     path: /etc/letsencrypt/renewal-hooks/deploy/
     state: directory
     mode: "0755"
 
 - name: Enable certbot renewal hook
-  file:
+  ansible.builtin.file:
     src: /opt/dnstools-worker/deployment/letsencrypt-deploy-hook.sh
     dest: /etc/letsencrypt/renewal-hooks/deploy/01-dnstools-worker
     state: link
-    force: yes
+    force: true
 
 #################################################
 # dnstools-worker
 
 - name: Create worker directory
-  file:
+  ansible.builtin.file:
     path: /opt/dnstools-worker/
     state: directory
     owner: daniel-ansible
     mode: "0755"
 
 - name: Copy worker
-  synchronize:
+  ansible.posix.synchronize:
     src: ../src/DnsTools.Worker/bin/Release/net8.0/linux-x64/publish/
     dest: /opt/dnstools-worker/
     rsync_path: "/usr/bin/rsync" # Avoiding sudo for rsync
 
 - name: Enable dnstools-worker systemd
-  file:
+  ansible.builtin.file:
     src: /opt/dnstools-worker/deployment/dnstools-worker.service
     dest: /etc/systemd/system/dnstools-worker.service
     state: link
 
 - name: Reload systemd
-  systemd:
-    daemon_reload: yes
+  ansible.builtin.systemd:
+    daemon_reload: true
 
 - name: Check if certbot has ran
-  stat:
+  ansible.builtin.stat:
     path: /opt/dnstools-worker/key.pfx
   register: cert_exists
 
-- debug:
+- name: Warn when certbot has not run
+  ansible.builtin.debug:
     msg: "Certbot has not been ran. Can't start the worker yet"
-  when: cert_exists.stat.exists == False
+  when: not cert_exists.stat.exists
 
 - name: Start worker
-  systemd:
+  ansible.builtin.systemd:
     name: dnstools-worker
     state: restarted
-    enabled: yes
-  when: cert_exists.stat.exists == True
+    enabled: true
+  when: cert_exists.stat.exists
