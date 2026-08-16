@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-snap/src/puppeteer_utils.js b/node_modules/react-snap/src/puppeteer_utils.js
+--- a/node_modules/react-snap/src/puppeteer_utils.js
++++ b/node_modules/react-snap/src/puppeteer_utils.js
+@@ -211,7 +211,7 @@ const crawl = async ({
+     if (!shuttingDown && !skipExistingFile) {
+       try {
+         const page = await browser.newPage();
+-        await page._client.send("ServiceWorker.disable");
++        await page._client().send("ServiceWorker.disable");
+         await page.setCacheEnabled(options.puppeteer.cache);
+         if (options.viewport) await page.setViewport(options.viewport);
+         if (options.skipThirdPartyRequests)
+diff --git a/node_modules/react-snap/src/tracker.js b/node_modules/react-snap/src/tracker.js
+--- a/node_modules/react-snap/src/tracker.js
++++ b/node_modules/react-snap/src/tracker.js
+@@ -15,9 +15,9 @@ const createTracker = page => {
+   return {
+     urls: () => Array.from(requests).map(r => r.url()),
+     dispose: () => {
+-      page.removeListener("request", onStarted);
+-      page.removeListener("requestfinished", onFinished);
+-      page.removeListener("requestfailed", onFinished);
++      page.off("request", onStarted);
++      page.off("requestfinished", onFinished);
++      page.off("requestfailed", onFinished);
+     }
+   };
+ };

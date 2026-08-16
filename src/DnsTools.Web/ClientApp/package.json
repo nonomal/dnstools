@@ -24,7 +24,6 @@
     "bootswatch": "^4.4.1",
     "downshift": "^3.4.8",
     "flag-icon-css": "^3.4.5",
-    "node-sass": "^5.0.0",
     "plausible-tracker": "^0.3.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -34,6 +33,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "4.0.3",
     "resize-observer-polyfill": "^1.5.1",
+    "sass": "^1.102.0",
     "source-map-explorer": "^2.1.1",
     "ts-essentials": "7.0.1",
     "typescript": "4.2.3",
@@ -42,9 +42,10 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "craco start",
-    "build": "craco build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider craco start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider craco build",
     "postbuild": "react-snap",
+    "postinstall": "patch-package",
     "test": "craco test",
     "generate-cshtml": "node ./generate-cshtml.js",
     "eject": "react-scripts eject"
@@ -65,7 +66,12 @@
     ]
   },
   "devDependencies": {
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "react-snap": "1.23.0"
+  },
+  "resolutions": {
+    "puppeteer": "25.7.0"
   },
   "proxy": "https://localhost:5001",
   "reactSnap": {
@@ -73,6 +79,6 @@
     "http2PushManifest": true
   },
   "volta": {
-    "node": "14.17.6"
+    "node": "24.19.0"
   }
 }
