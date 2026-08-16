@@ -93,7 +93,7 @@ For new workers, some manual configuration is required after the first time it's
 Create a TLS certificate for the worker:
 
 ```sh
-sudo certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges --server https://acme-v02.api.letsencrypt.org/directory --cert-name dnstools-worker -d xx.worker.dns.tg
+sudo certbot certonly --manual --manual-auth-hook /etc/letsencrypt/acme-dns-auth.py --preferred-challenges dns --debug-challenges --server https://acme-v02.api.letsencrypt.org/directory --cert-name dnstools-worker -d xx.worker.networktest.org
 ```
 
 (where `xx` is some identifier for the worker, like `fr` for France or `us-ny` for New York)

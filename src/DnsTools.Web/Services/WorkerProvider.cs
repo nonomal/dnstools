@@ -102,7 +102,7 @@ namespace DnsTools.Web.Services
 		{
 			return workerId == LOCAL_WORKER
 				? new Uri("http://localhost:55000")
-				: new Uri($"https://{workerId}.worker.dns.tg:54561");
+				: new Uri($"https://{workerId}.worker.networktest.org:54561");
 		}
 	}
 }
