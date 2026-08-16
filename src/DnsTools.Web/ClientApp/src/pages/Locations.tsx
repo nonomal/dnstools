@@ -56,8 +56,10 @@ export default function Locations() {
         <PromotedServerProviders />. If you're a hosting provider with services
         in other countries and would like to sponsor a DNSTools server, please
         get in touch with me via{' '}
-        <a href="mailto:feedback@dns.tg">email to feedback@dns.tg</a>,{' '}
-        <a href="https://twitter.com/Daniel15">Twitter</a>, or{' '}
+        <a href="mailto:feedback@networktest.org">
+          email to feedback@networktest.org
+        </a>
+        , <a href="https://twitter.com/Daniel15">Twitter</a>, or{' '}
         <a href="https://www.facebook.com/daaniel">Facebook</a>. This site is
         totally ad-free and relies on the generosity of hosting providers in
         order to continue expanding to other countries worldwide.

@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import {ErrorBoundary as SentryErrorBoundary} from '@sentry/react';
 
@@ -12,7 +11,8 @@ const appWithErrorBoundary = (
       <>
         <p>Sorry, an error occurred: {errorData.error?.message}.</p>
         <p>
-          Please contact me at feedback@dns.tg and let me know what went wrong.{' '}
+          Please contact me at feedback@networktest.org and let me know what
+          went wrong.{' '}
           {errorData.eventId && (
             <>
               Include <strong>error ID {errorData.eventId}</strong> in your
