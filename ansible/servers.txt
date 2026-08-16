@@ -2,39 +2,35 @@
 control ansible_connection=local
 
 [workers]
-at.worker.dns.tg
-au-syd.worker.dns.tg  clean_old_dotnet=false
-bg.worker.dns.tg
-ca.worker.dns.tg
-ch.worker.dns.tg
-cl.worker.dns.tg
-de.worker.dns.tg
-ee.worker.dns.tg
-fi.worker.dns.tg
-fr.worker.dns.tg
-hk.worker.dns.tg
-in.worker.dns.tg
-jp.worker.dns.tg
-lon.worker.dns.tg
-md.worker.dns.tg
-nl.worker.dns.tg
-no.worker.dns.tg
-nz.worker.dns.tg
-pl.worker.dns.tg
-ro.worker.dns.tg
-se.worker.dns.tg
-sg.worker.dns.tg
-us-dal.worker.dns.tg
-us-fl.worker.dns.tg
-us-la.worker.dns.tg    clean_old_dotnet=false
-us-ny.worker.dns.tg
-za.worker.dns.tg
+au-syd.worker.networktest.org
+bg.worker.networktest.org
+ca.worker.networktest.org
+ch.worker.networktest.org
+cl.worker.networktest.org
+de.worker.networktest.org
+ee.worker.networktest.org
+fi.worker.networktest.org
+fr.worker.networktest.org
+hk.worker.networktest.org
+in.worker.networktest.org
+jp.worker.networktest.org
+lon.worker.networktest.org
+md.worker.networktest.org
+nl.worker.networktest.org
+no.worker.networktest.org
+nz.worker.networktest.org
+ro.worker.networktest.org
+se.worker.networktest.org
+sg.worker.networktest.org
+us-dal.worker.networktest.org
+us-fl.worker.networktest.org
+us-la.worker.networktest.org
+us-ny.worker.networktest.org
+za.worker.networktest.org
 
 [workers:vars]
 ansible_user=daniel-ansible
 ansible_become=yes
-ansible_become_method=sudo
 ansible_ssh_private_key_file=~/.ssh/id_ed25519_ansible
 ansible_become_pass='{{ sudo_pass }}'
-clean_old_dotnet=true
 ansible_python_interpreter=/usr/bin/python3
