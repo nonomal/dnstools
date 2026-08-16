@@ -70,7 +70,7 @@ services.AddCors(options =>
 	{
 		builder.WithOrigins(
 			// create-react-app server
-			"http://localhost:64329",
+			"http://localhost:14329",
 			// react-snap server
 			"http://localhost:45678"
 		)

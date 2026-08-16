@@ -67,7 +67,7 @@
   "devDependencies": {
     "react-snap": "1.23.0"
   },
-  "proxy": "https://localhost:14325",
+  "proxy": "https://localhost:5001",
   "reactSnap": {
     "skipThirdPartyRequests": false,
     "http2PushManifest": true
